@@ -1,0 +1,15 @@
+footer {
+    width: 100%;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    background-color:#b8952e;
+    color: white;
+    padding: 10px;
+}
+
+footer a {
+    color: rgb(26, 25, 25);
+}
