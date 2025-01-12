@@ -1,4 +1,3 @@
-// Selecionar elementos importantes do DOM
 const form = document.querySelector('.form');
 const dateInput = document.querySelector('#date');
 const clientInput = document.querySelector('#client');
@@ -9,15 +8,15 @@ const periods = {
   night: document.querySelector('#period-night'),
 };
 
-// Variável para armazenar agendamentos
+
 let appointments = {};
 
-// Função para atualizar a interface de agendamentos
+
 function renderAppointments(date) {
-  // Limpar listas de períodos
+
   Object.values(periods).forEach(period => (period.innerHTML = ''));
 
-  // Adicionar agendamentos da data selecionada
+  
   if (appointments[date]) {
     appointments[date].forEach(({ time, client }) => {
       const [hour] = time.split(':');
@@ -31,7 +30,7 @@ function renderAppointments(date) {
         <img src="./src/assets/cancel.svg" alt="Cancelar" class="cancel-icon" />
       `;
       
-      // Botão para cancelar agendamento
+      
       listItem.querySelector('.cancel-icon').addEventListener('click', () => {
         cancelAppointment(date, time);
       });
@@ -41,21 +40,21 @@ function renderAppointments(date) {
   }
 }
 
-// Função para adicionar agendamento
+
 function addAppointment(date, time, client) {
   if (!appointments[date]) appointments[date] = [];
   appointments[date].push({ time, client });
   renderAppointments(date);
 }
 
-// Função para cancelar agendamento
+
 function cancelAppointment(date, time) {
   appointments[date] = appointments[date].filter(appointment => appointment.time !== time);
   if (appointments[date].length === 0) delete appointments[date];
   renderAppointments(date);
 }
 
-// Manipular envio do formulário
+
 form.addEventListener('submit', event => {
   event.preventDefault();
   const date = dateInput.value;
@@ -72,7 +71,7 @@ form.addEventListener('submit', event => {
   hoursList.querySelector('.hour-selected')?.classList.remove('hour-selected');
 });
 
-// Selecionar horário ao clicar
+
 hoursList.addEventListener('click', event => {
   const target = event.target;
   if (target.classList.contains('hour-available')) {
@@ -81,7 +80,7 @@ hoursList.addEventListener('click', event => {
   }
 });
 
-// Atualizar interface ao alterar a data
+
 dateInput.addEventListener('change', () => {
   const selectedDate = dateInput.value;
   renderAppointments(selectedDate);
